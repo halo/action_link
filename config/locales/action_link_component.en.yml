@@ -1,0 +1,4 @@
+en:
+  action_link_component:
+    actions:
+      new: Add %{subject}
