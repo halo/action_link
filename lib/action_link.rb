@@ -16,7 +16,7 @@ module Rails
   end
 
   def self.env
-    OpenStruct.new development: true
+    Data.define(:development?).new(true)
   end
 
   def self.application; end

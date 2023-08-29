@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module ActionLink
+  # An action link that indicates adding a new record.
   class New < Base
     # `model:` is mandatory because `[:new, :admin, Klass]` would
     # translate to the route `[:new, :admin, :klasses]` and that's incorrect (plural vs singular).

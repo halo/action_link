@@ -2,7 +2,9 @@
 
 require 'test_helper'
 
-class ActionLink::SuperCharge < ActionLink::Base
+module ActionLink
+  class SuperCharge < ActionLink::Base
+  end
 end
 
 class TestActionLink < Minitest::Test

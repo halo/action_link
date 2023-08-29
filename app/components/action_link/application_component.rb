@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 module ActionLink
+  # A component that every other component inherits from in this gem.
+  # It adds convenience methods for initialization of a component.
   class ApplicationComponent < ViewComponent::Base
     extend Dry::Initializer
 

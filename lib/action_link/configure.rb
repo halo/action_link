@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# The namespace that this gem uses.
 module ActionLink
   # Lazy-loads and returns the global configuration instance.
   #

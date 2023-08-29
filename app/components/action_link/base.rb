@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 module ActionLink
+  # A component that every action link inherits from.
+  # It adds the API that all action links have in common.
   class Base < ApplicationComponent
     # These are common for all subclasses.
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ActionLink
   # Holds global configuration parameters.
   class Configuration
