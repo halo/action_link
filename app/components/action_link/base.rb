@@ -4,16 +4,17 @@ module ActionLink
   # A component that every action link inherits from.
   # It adds the API that all action links have in common.
   class Base < ApplicationComponent
-    # These are common for all subclasses.
+    # The following options are common for all subclasses.
 
     # Authorization
     option :current_user # User passed to the policy
     option :policy_subject, default: -> {} # Record passed to the policy
     option :policy_context, default: -> {} # Optional additional context for policies
 
+    # Visualization
     option :icon, default: -> {}
 
-    # These may vary for different subclasses.
+    # The following options may vary for different subclasses.
     option :url, default: -> {}
     option :model, as: :manual_model, default: -> {}
     option :title, as: :manual_title, default: -> {}
@@ -24,6 +25,7 @@ module ActionLink
       _policy.public_send(:"#{_action}?")
     end
 
+    # Allows you to turn off the icon.
     def icon?
       icon != false
     end
@@ -54,21 +56,26 @@ module ActionLink
 
     private
 
-    # Strictly internal to this superclass.
+    # Below this point, strictly internal to this superclass.
+    # If you find yourself overwriting any of these methods, question the concept.
+    # Don't call these methods from the view, either.
 
     # Converts a class like `::ActionLink::New` to the symbol `:new`.
     def _action
       self.class.name[12..].underscore.to_sym
     end
 
-    def _policy
-      subject = policy_subject || model
-      raise "Expected a policy subject #{self}" unless subject
+    def _policy_subject
+      policy_subject ||
+        model ||
+        raise("Expected a policy subject #{self}")
+    end
 
+    def _policy
       if defined?(::ActionPolicy)
-        ::ActionPolicy.lookup(subject).new(subject, user: current_user)
+        ::ActionPolicy.lookup(_policy_subject).new(_policy_subject, user: current_user)
       else
-        ::Pundit.policy!(current_user, subject)
+        ::Pundit.policy!(current_user, _policy_subject)
       end
     end
   end
