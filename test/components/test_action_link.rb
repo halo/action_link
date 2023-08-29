@@ -9,7 +9,7 @@ end
 
 class TestActionLink < Minitest::Test
   def test_action_name_derivation
-    component = ActionLink::SuperCharge.new
+    component = ActionLink::SuperCharge.new(current_user: nil)
 
     assert_equal :super_charge, component.send(:_action)
   end

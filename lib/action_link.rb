@@ -4,8 +4,6 @@ require 'view_component'
 require 'dry/initializer'
 
 require_relative 'action_link/version'
-require_relative 'action_link/configuration'
-require_relative 'action_link/configure'
 
 require 'action_link/engine' if defined?(Rails::Engine)
 

@@ -7,11 +7,7 @@ module ActionLink
     # These are common for all subclasses.
 
     # Authorization
-    if ActionLink.config.demand_current_user
-      option :current_user # User passed to the policy
-    else
-      option :current_user, default: -> {}
-    end
+    option :current_user # User passed to the policy
     option :policy_subject, default: -> {} # Record passed to the policy
     option :policy_context, default: -> {} # Optional additional context for policies
 
