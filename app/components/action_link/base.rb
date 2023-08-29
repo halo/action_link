@@ -30,12 +30,23 @@ module ActionLink
       icon != false
     end
 
-    def icon(name)
+    def icon_tag(name)
       helpers.content_tag :i, nil,
                           class: "o-acticon o-acticon--#{name.to_s.dasherize}"
     end
 
-    def model
+    def options
+      {
+        title: _title,
+        class: _class,
+        data:,
+        target: _target
+      }
+    end
+
+    private
+
+    def _model
       candidate = manual_model
       candidate ||= url.last if url.is_a?(Array)
 
@@ -45,16 +56,22 @@ module ActionLink
       candidate
     end
 
-    def i18n_key
-      "action_link_component.actions.#{_action}"
-    end
-
-    def sanitized_title
+    def sanitized_title_subject
       strip_tags(manual_title).presence ||
-        strip_tags(model.model_name.human)
+        strip_tags(_model.model_name.human)
     end
 
-    private
+    def _title
+      t(_i18n_title_key, subject: sanitized_title_subject)
+    end
+
+    def _class
+      ['c-action-link', css_class].join(' ')
+    end
+
+    def _target
+      :_blank if url.to_s.start_with?('http')
+    end
 
     # Below this point, strictly internal to this superclass.
     # If you find yourself overwriting any of these methods, question the concept.
@@ -62,20 +79,26 @@ module ActionLink
 
     # Converts a class like `::ActionLink::New` to the symbol `:new`.
     def _action
-      self.class.name[12..].underscore.to_sym
+      @_action ||= self.class.name[12..].underscore.to_sym
+    end
+
+    def _i18n_title_key
+      "action_link_component.titles.#{_action}"
     end
 
     def _policy_subject
       policy_subject ||
-        model ||
+        _model ||
         raise("Expected a policy subject #{self}")
     end
 
     def _policy
       if defined?(::ActionPolicy)
         ::ActionPolicy.lookup(_policy_subject).new(_policy_subject, user: current_user)
-      else
+      elsif defined?(::Pundit)
         ::Pundit.policy!(current_user, _policy_subject)
+      else
+        raise 'Please add either `action_policy` or `pundit` to your Gemfile'
       end
     end
   end

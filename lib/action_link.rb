@@ -5,20 +5,11 @@ require 'dry/initializer'
 
 require_relative 'action_link/version'
 
+require_relative '../app/components/action_link/application_component'
+require_relative '../app/components/action_link/base'
+require_relative '../app/components/action_link/new'
+
 require 'action_link/engine' if defined?(Rails::Engine)
-
-# Dummy
-module Rails
-  def self.version
-    7
-  end
-
-  def self.env
-    Data.define(:development?).new(true)
-  end
-
-  def self.application; end
-end
 
 module ActionLink
   class Error < ::StandardError; end

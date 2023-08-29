@@ -1,4 +1,4 @@
 en:
   action_link_component:
-    actions:
+    titles:
       new: Add %{subject}
