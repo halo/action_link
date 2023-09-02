@@ -6,5 +6,21 @@ module ActionLink
   # :nodoc:
   class Engine < ::Rails::Engine
     isolate_namespace ActionLink
+
+    config.after_initialize do
+      # Our ActionLink components are subclasses of `ViewComponent::Base`.
+      # When `ViewComponent::Base` is subclassed, two things happen:
+      #
+      #   1. Rails routes are included into the component
+      #   2. The ViewComponent configuration is accessed
+      #
+      # So we can only require our components, once Rails has booted
+      # AND the view_component gem has been fully initialized (configured).
+      #
+      # That's right here and now.
+      require_relative '../../app/components/action_link/application_component'
+      require_relative '../../app/components/action_link/base'
+      require_relative '../../app/components/action_link/new'
+    end
   end
 end
