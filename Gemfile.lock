@@ -4,7 +4,6 @@ PATH
     action_link (0.1.0)
       actionview
       dry-initializer
-      slim
       view_component
 
 GEM
@@ -96,12 +95,7 @@ GEM
       rubocop (~> 1.0)
     ruby-next-core (0.15.3)
     ruby-progressbar (1.13.0)
-    slim (5.1.1)
-      temple (~> 0.10.0)
-      tilt (>= 2.1.0)
-    temple (0.10.2)
     thor (1.2.2)
-    tilt (2.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
