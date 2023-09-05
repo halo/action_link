@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 require 'rails/engine'
+require 'dry-initializer'
 
 module ActionLink
   # :nodoc:
   class Engine < ::Rails::Engine
     isolate_namespace ActionLink
 
-    config.after_initialize do
+    config.to_prepare do
       # Our ActionLink components are subclasses of `ViewComponent::Base`.
       # When `ViewComponent::Base` is subclassed, two things happen:
       #

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# First, build and boot a Rails application
+
 require 'view_component/engine'
 class ActionLinkApplication < Rails::Application
 end
@@ -14,12 +16,25 @@ require 'action_controller'
 class ApplicationController < ActionController::Base
 end
 
+# Second, make sure the ViewComponent gem is initialized
+
 require 'view_component/base'
 ViewComponent::Base.config = ViewComponent::Config.default
 require 'action_controller/test_case'
 
+# Third, initialize the ActionLink gem
+
+require 'action_link/engine'
+ActionLink::Engine.config.to_prepare_blocks.each(&:call)
+
+# Now we can load whatever we need for our tests
+
+require 'view_component/test_helpers'
+require 'view_component/test_case'
 require 'active_model'
 require 'action_policy'
+
+# Now we can load this very gem
 
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 require 'action_link'

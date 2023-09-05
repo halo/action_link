@@ -8,6 +8,7 @@ gemspec
 gem 'action_policy'
 gem 'activemodel'
 gem 'minitest'
+gem 'pry'
 gem 'railties'
 gem 'rake'
 gem 'rubocop'
