@@ -99,7 +99,11 @@ GEM
       rubocop (~> 1.0)
     ruby-next-core (0.15.3)
     ruby-progressbar (1.13.0)
+    rubyzip (2.3.2)
     thor (1.2.2)
+    tty-cursor (0.7.1)
+    tty-spinner (0.9.3)
+      tty-cursor (~> 0.7)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
@@ -123,6 +127,8 @@ DEPENDENCIES
   rubocop
   rubocop-minitest
   rubocop-rake
+  rubyzip
+  tty-spinner
 
 BUNDLED WITH
    2.4.18
