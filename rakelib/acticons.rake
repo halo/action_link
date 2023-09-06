@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :acticons do
   desc 'Applies the latest `acticons.zip` from your Downloads directory'
   task :update do
