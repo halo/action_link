@@ -19,7 +19,6 @@ end
 # Second, make sure the ViewComponent gem is initialized
 
 require 'view_component/base'
-ViewComponent::Base.config = ViewComponent::Config.default
 require 'action_controller/test_case'
 
 # Third, initialize the ActionLink gem

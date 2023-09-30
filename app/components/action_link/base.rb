@@ -46,6 +46,22 @@ module ActionLink
 
     private
 
+    # Options for `link_to`
+
+    def _title
+      t(_i18n_title_key, subject: sanitized_title_subject)
+    end
+
+    def _class
+      ['c-action-link', css_class].join(' ')
+    end
+
+    def _target
+      :_blank if url.to_s.start_with?('http')
+    end
+
+    # Helpers
+
     def _model
       candidate = manual_model
       candidate ||= url.last if url.is_a?(Array)
@@ -59,18 +75,6 @@ module ActionLink
     def sanitized_title_subject
       strip_tags(manual_title).presence ||
         strip_tags(_model.model_name.human)
-    end
-
-    def _title
-      t(_i18n_title_key, subject: sanitized_title_subject)
-    end
-
-    def _class
-      ['c-action-link', css_class].join(' ')
-    end
-
-    def _target
-      :_blank if url.to_s.start_with?('http')
     end
 
     # Below this point, strictly internal to this superclass.
