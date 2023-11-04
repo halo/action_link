@@ -8,8 +8,8 @@ module ActionLink
 
     # Authorization
     option :current_user # User passed to the policy
-    option :policy_subject, default: -> {} # Record passed to the policy
-    option :policy_context, default: -> {} # Optional additional context for policies
+    option :policy_subject, as: :manual_policy_subject, default: -> {} # Record passed to the policy
+    option :policy_context, as: :manual_policy_context, default: -> {} # Optional context for policy
 
     # Visualization
     option :icon, default: -> {}
@@ -91,7 +91,7 @@ module ActionLink
     end
 
     def _policy_subject
-      policy_subject ||
+      manual_policy_subject ||
         _model ||
         raise("Expected a policy subject #{self}")
     end

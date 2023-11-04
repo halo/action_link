@@ -20,6 +20,7 @@ end
 
 require 'view_component/base'
 require 'action_controller/test_case'
+ViewComponent::Base.config.view_component_path = File.expand_path('../app/components', __dir__)
 
 # Third, initialize the ActionLink gem
 
