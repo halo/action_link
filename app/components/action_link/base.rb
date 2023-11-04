@@ -10,6 +10,7 @@ module ActionLink
     option :current_user # User passed to the policy
     option :policy_subject, as: :manual_policy_subject, default: -> {} # Record passed to the policy
     option :policy_context, as: :manual_policy_context, default: -> {} # Optional context for policy
+    option :policy_library, as: :manual_policy_library, default: -> {}
 
     # Visualization
     option :icon, default: -> {}
@@ -96,14 +97,32 @@ module ActionLink
         raise("Expected a policy subject #{self}")
     end
 
+    def _policy_library
+      manual_policy_library || :auto
+    end
+
     def _policy
-      if defined?(::ActionPolicy)
-        ::ActionPolicy.lookup(_policy_subject).new(_policy_subject, user: current_user)
-      elsif defined?(::Pundit)
-        ::Pundit.policy!(current_user, _policy_subject)
+      if (_policy_library == :auto && defined?(::ActionPolicy)) || _policy_library == :action_policy
+        _policy_from_action_policy
+      elsif (_policy_library == :auto && defined?(::Pundit)) || _policy_library == :pundit
+        _policy_from_pundit
       else
-        raise 'Please add either `action_policy` or `pundit` to your Gemfile'
+        _policy_from_proc
       end
+    end
+
+    def _policy_from_action_policy
+      ::ActionPolicy.lookup(_policy_subject).new(_policy_subject, user: current_user)
+    end
+
+    def _policy_from_pundit
+      ::Pundit.policy!(current_user, _policy_subject)
+    end
+
+    def _policy_from_proc
+      manual_policy_library.call(current_user:,
+                                 policy_subject: _policy_subject,
+                                 policy_context: manual_policy_context)
     end
   end
 end
