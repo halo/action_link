@@ -4,6 +4,10 @@ class RocketModel
   include ActiveModel::API
 end
 
+class SpeedModel
+  include ActiveModel::API
+end
+
 class RocketModelPolicy < ActionPolicy::Base
   def new?
     user == :yes
@@ -30,6 +34,19 @@ class TestNew < ViewComponent::TestCase
 
     expected_html = <<~HTML.strip
       <a title="Add Rocket model" class="c-action-link " href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
+    HTML
+    assert_equal(expected_html, ouput.to_html)
+  end
+
+  def test_i18n_model
+    model = RocketModel.new
+    current_user = :yes
+
+    component = ActionLink::New.new(url: :home, model:, i18n_model: SpeedModel, current_user:)
+    ouput = render_inline(component) { 'Hello, World!' }
+
+    expected_html = <<~HTML.strip
+      <a title="Add Speed model" class="c-action-link " href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
     HTML
     assert_equal(expected_html, ouput.to_html)
   end

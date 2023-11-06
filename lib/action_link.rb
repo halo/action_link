@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require 'dry/initializer'
+require 'calls'
 
-require_relative 'action_link/version'
+require 'action_link/version'
+require 'action_link/model'
+require 'action_link/title_subject'
 
 require 'action_link/engine' if defined?(Rails::Engine)
 

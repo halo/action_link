@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'actionview' # Needed by `view_component`
+  spec.add_dependency 'calls'
   spec.add_dependency 'dry-initializer'
   spec.add_dependency 'view_component'
 

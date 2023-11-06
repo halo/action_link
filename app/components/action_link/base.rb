@@ -19,6 +19,7 @@ module ActionLink
     option :class, as: :css_class, default: -> {}
     option :data, default: -> {}
     option :model, as: :manual_model, default: -> {}
+    option :i18n_model, as: :manual_i18n_model, default: -> {}
     option :title, as: :manual_title, default: -> {}
     option :url, default: -> {}
 
@@ -50,8 +51,7 @@ module ActionLink
     # May be accessed and/or overriden in subclasses
 
     def sanitized_title_subject
-      strip_tags(manual_title).presence ||
-        strip_tags(_model.model_name.human)
+      strip_tags(_title_subject)
     end
 
     def i18n_title_key
@@ -79,18 +79,16 @@ module ActionLink
     # Helpers
 
     def _model
-      candidate = manual_model
-      candidate ||= url.last if url.is_a?(Array)
-
-      candidate.respond_to?(:model_name) ||
-        raise(MissingModelError, "Model `#{candidate.inspect}` must respond to #model_name")
-
-      candidate
+      ::ActionLink::Model.call(manual_model:, url:)
     end
 
     # Converts a class like `::ActionLink::New` to the symbol `:new`.
     def _action
       @_action ||= self.class.name[12..].underscore.to_sym
+    end
+
+    def _title_subject
+      ::ActionLink::TitleSubject.call(manual_title:, manual_i18n_model:, model: _model)
     end
 
     def _policy_subject
