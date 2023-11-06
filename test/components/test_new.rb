@@ -51,6 +51,17 @@ class TestNew < ViewComponent::TestCase
     assert_equal(expected_html, ouput.to_html)
   end
 
+  def test_invalid_i18n_model
+    model = RocketModel.new
+    current_user = :yes
+
+    component = ActionLink::New.new(url: :home, model:, i18n_model: 'not me', current_user:)
+
+    assert_raises ArgumentError do
+      render_inline(component) { 'Hello, World!' }
+    end
+  end
+
   def test_extra_options
     model = RocketModel.new
     current_user = :yes

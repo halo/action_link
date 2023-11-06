@@ -50,10 +50,6 @@ module ActionLink
 
     # May be accessed and/or overriden in subclasses
 
-    def sanitized_title_subject
-      strip_tags(_title_subject)
-    end
-
     def i18n_title_key
       "action_link_component.titles.#{_action}"
     end
@@ -65,7 +61,7 @@ module ActionLink
     # Options for `link_to`
 
     def _title
-      t(i18n_title_key, subject: sanitized_title_subject)
+      t(i18n_title_key, subject: strip_tags(_title_subject_name))
     end
 
     def _class
@@ -79,7 +75,7 @@ module ActionLink
     # Helpers
 
     def _model
-      ::ActionLink::Model.call(manual_model:, url:)
+      @_model ||= ::ActionLink::Model.call(manual_model:, url:)
     end
 
     # Converts a class like `::ActionLink::New` to the symbol `:new`.
@@ -87,8 +83,12 @@ module ActionLink
       @_action ||= self.class.name[12..].underscore.to_sym
     end
 
-    def _title_subject
-      ::ActionLink::TitleSubject.call(manual_title:, manual_i18n_model:, model: _model)
+    def _title_subject_name
+      @_title_subject_name ||= ::ActionLink::TitleSubjectName.call(
+        manual_title:,
+        manual_i18n_model:,
+        model: _model
+      )
     end
 
     def _policy_subject
