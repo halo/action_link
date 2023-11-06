@@ -46,4 +46,17 @@ class TestNew < ViewComponent::TestCase
     HTML
     assert_equal(expected_html, ouput.to_html)
   end
+
+  def test_associative
+    model = RocketModel.new
+    current_user = :yes
+
+    component = ActionLink::New.new(url: :home, model:, current_user:, associative: true)
+    ouput = render_inline(component) { 'Hello, World!' }
+
+    expected_html = <<~HTML.strip
+      <a title="Assign Rocket model" class="c-action-link " href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
+    HTML
+    assert_equal(expected_html, ouput.to_html)
+  end
 end

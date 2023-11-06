@@ -18,5 +18,12 @@ module ActionLink
     # translate to the route `[:new, :admin, :klasses]` and that's incorrect (plural vs singular).
     option :model, as: :manual_model
     option :url
+    option :associative, default: -> { false }
+
+    def i18n_title_key
+      return 'action_link_component.titles.assign' if associative
+
+      super
+    end
   end
 end

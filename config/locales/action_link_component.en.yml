@@ -2,3 +2,4 @@ en:
   action_link_component:
     titles:
       new: Add %{subject}
+      assign: "Assign %{subject}"

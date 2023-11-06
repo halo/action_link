@@ -8,19 +8,19 @@ module ActionLink
 
     # Authorization
     option :current_user # User passed to the policy
-    option :policy_subject, as: :manual_policy_subject, default: -> {} # Record passed to the policy
-    option :policy_context, as: :manual_policy_context, default: -> {} # Optional context for policy
     option :policy_library, as: :manual_policy_library, default: -> {}
+    option :policy_subject, as: :manual_policy_subject, default: -> {} # Record passed to the policy
 
     # Visualization
     option :icon, default: -> {}
 
     # The following options may vary for different subclasses.
-    option :url, default: -> {}
-    option :model, as: :manual_model, default: -> {}
-    option :title, as: :manual_title, default: -> {}
+    # Here, in the superclass, they're all defined as optional.
     option :class, as: :css_class, default: -> {}
     option :data, default: -> {}
+    option :model, as: :manual_model, default: -> {}
+    option :title, as: :manual_title, default: -> {}
+    option :url, default: -> {}
 
     def permission?
       _policy.public_send(:"#{_action}?")
@@ -47,10 +47,25 @@ module ActionLink
 
     private
 
+    # May be accessed and/or overriden in subclasses
+
+    def sanitized_title_subject
+      strip_tags(manual_title).presence ||
+        strip_tags(_model.model_name.human)
+    end
+
+    def i18n_title_key
+      "action_link_component.titles.#{_action}"
+    end
+
+    # Below this point, strictly internal to this superclass.
+    # If you find yourself overwriting any of these methods, question the concept.
+    # Don't call these methods from the view, either.
+
     # Options for `link_to`
 
     def _title
-      t(_i18n_title_key, subject: sanitized_title_subject)
+      t(i18n_title_key, subject: sanitized_title_subject)
     end
 
     def _class
@@ -73,22 +88,9 @@ module ActionLink
       candidate
     end
 
-    def sanitized_title_subject
-      strip_tags(manual_title).presence ||
-        strip_tags(_model.model_name.human)
-    end
-
-    # Below this point, strictly internal to this superclass.
-    # If you find yourself overwriting any of these methods, question the concept.
-    # Don't call these methods from the view, either.
-
     # Converts a class like `::ActionLink::New` to the symbol `:new`.
     def _action
       @_action ||= self.class.name[12..].underscore.to_sym
-    end
-
-    def _i18n_title_key
-      "action_link_component.titles.#{_action}"
     end
 
     def _policy_subject
@@ -107,7 +109,7 @@ module ActionLink
       elsif (_policy_library == :auto && defined?(::Pundit)) || _policy_library == :pundit
         _policy_from_pundit
       else
-        _policy_from_proc
+        raise 'Implement me in a sane way, once it is actually needed'
       end
     end
 
@@ -117,12 +119,6 @@ module ActionLink
 
     def _policy_from_pundit
       ::Pundit.policy!(current_user, _policy_subject)
-    end
-
-    def _policy_from_proc
-      manual_policy_library.call(current_user:,
-                                 policy_subject: _policy_subject,
-                                 policy_context: manual_policy_context)
     end
   end
 end

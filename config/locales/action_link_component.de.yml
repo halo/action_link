@@ -2,3 +2,4 @@ de:
   action_link_component:
     titles:
       new: "%{subject} anlegen"
+      assign: "%{subject} zuweisen"
