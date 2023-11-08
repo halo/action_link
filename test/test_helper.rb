@@ -3,7 +3,7 @@
 # First, build and boot a Rails application
 
 require 'view_component/engine'
-class ActionLinkApplication < Rails::Application
+class MyApplication < Rails::Application
 end
 
 Rails.application.routes.draw do
