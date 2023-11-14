@@ -3,3 +3,4 @@ en:
     titles:
       new: Add %{subject}
       assign: "Assign %{subject}"
+      show: "Show %{subject}"

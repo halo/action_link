@@ -65,7 +65,7 @@ module ActionLink
     end
 
     def _class
-      ['c-action-link', css_class].join(' ')
+      ['c-action-link', css_class].join(' ').squish
     end
 
     def _target

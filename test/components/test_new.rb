@@ -33,7 +33,7 @@ class TestNew < ViewComponent::TestCase
     ouput = render_inline(component) { 'Hello, World!' }
 
     expected_html = <<~HTML.strip
-      <a title="Add Rocket model" class="c-action-link " href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
+      <a title="Add Rocket model" class="c-action-link" href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
     HTML
     assert_equal(expected_html, ouput.to_html)
   end
@@ -46,7 +46,7 @@ class TestNew < ViewComponent::TestCase
     ouput = render_inline(component) { 'Hello, World!' }
 
     expected_html = <<~HTML.strip
-      <a title="Add Speed model" class="c-action-link " href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
+      <a title="Add Speed model" class="c-action-link" href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
     HTML
     assert_equal(expected_html, ouput.to_html)
   end
@@ -70,7 +70,7 @@ class TestNew < ViewComponent::TestCase
     ouput = render_inline(component) { 'Hello, World!' }
 
     expected_html = <<~HTML.strip
-      <a title="Add Rocket model" class="c-action-link " data-cool="thing" href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
+      <a title="Add Rocket model" class="c-action-link" data-cool="thing" href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
     HTML
     assert_equal(expected_html, ouput.to_html)
   end
@@ -83,7 +83,7 @@ class TestNew < ViewComponent::TestCase
     ouput = render_inline(component) { 'Hello, World!' }
 
     expected_html = <<~HTML.strip
-      <a title="Assign Rocket model" class="c-action-link " href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
+      <a title="Assign Rocket model" class="c-action-link" href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
     HTML
     assert_equal(expected_html, ouput.to_html)
   end

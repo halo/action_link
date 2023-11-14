@@ -7,7 +7,11 @@ class MyApplication < Rails::Application
 end
 
 Rails.application.routes.draw do
-  resource :home
+  resource :home, only: [:show]
+
+  namespace :sales do
+    resources :orange_models, only: [:show]
+  end
 end
 
 I18n.load_path += Dir[Rails.root.join('config/locales/*.yml')]

@@ -3,3 +3,4 @@ de:
     titles:
       new: "%{subject} anlegen"
       assign: "%{subject} zuweisen"
+      show: "%{subject} anzeigen"
