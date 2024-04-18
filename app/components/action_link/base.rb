@@ -34,15 +34,16 @@ module ActionLink
 
     def icon_tag(name)
       helpers.content_tag :i, nil,
-                          class: "o-acticon o-acticon--#{name.to_s.dasherize}"
+                          class: "o-acticon o-acticon--#{name}"
     end
 
     def options
       {
         title: _title,
         class: _class,
-        data:,
-        target: _target
+        data: _data,
+        target: _target,
+        method: http_method
       }
     end
 
@@ -52,6 +53,13 @@ module ActionLink
 
     def i18n_title_key
       "action_link_component.titles.#{_action}"
+    end
+
+    def http_method; end
+    def confirmation; end
+
+    def default_confirmation_subject
+      _title_subject_name
     end
 
     # Below this point, strictly internal to this superclass.
@@ -64,12 +72,20 @@ module ActionLink
       t(i18n_title_key, subject: strip_tags(_title_subject_name))
     end
 
+    def _data
+      (data || {}).merge(confirm: confirmation)
+    end
+
     def _class
       ['c-action-link', css_class].join(' ').squish
     end
 
     def _target
       :_blank if url.to_s.start_with?('http')
+    end
+
+    def _additional_data
+      { confirm: confirmation }
     end
 
     # Helpers

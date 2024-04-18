@@ -1,6 +1,11 @@
 en:
   action_link_component:
+    confirmations:
+      destroy: "Would you like to delete %{subject}?"
+      unassign: "Would you like to unassign %{subject}? This action does not delete."
     titles:
-      new: Add %{subject}
       assign: "Assign %{subject}"
+      destroy: "Delete %{subject}"
+      new: Add %{subject}
       show: "Show %{subject}"
+      unassign: "Unassign %{subject}"

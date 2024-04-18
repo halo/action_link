@@ -1,6 +1,11 @@
 de:
   action_link_component:
+    confirmations:
+      destroy: "Möchtest du %{subject} löschen?"
+      unassign: "Möchtest du %{subject} entkoppeln? Bei dieser Aktion wird nichts gelöscht."
     titles:
-      new: "%{subject} anlegen"
       assign: "%{subject} zuweisen"
+      destroy: "%{subject} löschen"
+      new: "%{subject} anlegen"
       show: "%{subject} anzeigen"
+      unassign: "%{subject} entkoppeln"

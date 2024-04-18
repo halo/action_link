@@ -3,11 +3,13 @@
 module ActionLink
   # An action link that indicates adding a new record.
   class New < Base
+    ICON = 'plus-circle'
+
     erb_template <<~ERB.gsub("\n", '')
       <% if permission? %>
       <%= link_to(url, **options) do %>
       <%= content %>
-      <% if icon? %><%= ' ' %><%= icon_tag :plus_circle %><% end %>
+      <% if icon? %><%= ' ' %><%= icon_tag ::ActionLink::New::ICON %><% end %>
       <% end %>
       <% else %>
       <%= content %>

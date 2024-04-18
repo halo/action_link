@@ -28,9 +28,9 @@ class TestShow < ViewComponent::TestCase
     current_user = :no
 
     component = ActionLink::Show.new(url: [:sales, model], current_user:)
-    ouput = render_inline(component) { 'Hello, World!' }
+    output = render_inline(component) { 'Hello, World!' }
 
-    assert_equal('Hello, World!', ouput.to_html)
+    assert_equal('Hello, World!', output.to_html)
   end
 
   def test_allowed
@@ -38,12 +38,12 @@ class TestShow < ViewComponent::TestCase
     current_user = :yes
 
     component = ActionLink::Show.new(url: [:sales, model], current_user:)
-    ouput = render_inline(component) { 'Hello, World!' }
+    output = render_inline(component) { 'Hello, World!' }
 
     expected_html = <<~HTML.strip
       <a title="Show Orange model" class="c-action-link" href="/sales/orange_models/42">Hello, World! <i class="o-acticon o-acticon--chevron-circle-right"></i></a>
     HTML
-    assert_equal(expected_html, ouput.to_html)
+    assert_equal(expected_html, output.to_html)
   end
 
   def test_i18n_model
@@ -51,12 +51,12 @@ class TestShow < ViewComponent::TestCase
     current_user = :yes
 
     component = ActionLink::Show.new(url: [:sales, model], i18n_model: RedModel, current_user:)
-    ouput = render_inline(component) { 'Hello, World!' }
+    output = render_inline(component) { 'Hello, World!' }
 
     expected_html = <<~HTML.strip
       <a title="Show Red model" class="c-action-link" href="/sales/orange_models/42">Hello, World! <i class="o-acticon o-acticon--chevron-circle-right"></i></a>
     HTML
-    assert_equal(expected_html, ouput.to_html)
+    assert_equal(expected_html, output.to_html)
   end
 
   def test_invalid_i18n_model
@@ -76,11 +76,11 @@ class TestShow < ViewComponent::TestCase
 
     component = ActionLink::Show.new(url: [:sales, model], current_user:,
                                      data: { nice: :thing }, class: 'is-highlighted')
-    ouput = render_inline(component) { 'Hello, World!' }
+    output = render_inline(component) { 'Hello, World!' }
 
     expected_html = <<~HTML.strip
       <a title="Show Orange model" class="c-action-link is-highlighted" data-nice="thing" href="/sales/orange_models/42">Hello, World! <i class="o-acticon o-acticon--chevron-circle-right"></i></a>
     HTML
-    assert_equal(expected_html, ouput.to_html)
+    assert_equal(expected_html, output.to_html)
   end
 end
