@@ -81,7 +81,7 @@ module ActionLink
     end
 
     def _target
-      :_blank if url.to_s.start_with?('http')
+      :_blank if url.to_s.start_with?('http:') || url.to_s.start_with?('https:')
     end
 
     def _additional_data

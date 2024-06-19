@@ -6,6 +6,7 @@ en:
     titles:
       assign: "Assign %{subject}"
       destroy: "Delete %{subject}"
+      edit: "Edit %{subject}"
       new: Add %{subject}
       show: "Show %{subject}"
       unassign: "Unassign %{subject}"

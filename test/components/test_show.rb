@@ -46,6 +46,45 @@ class TestShow < ViewComponent::TestCase
     assert_equal(expected_html, output.to_html)
   end
 
+  def test_external_http_url
+    model = OrangeModel.new
+    current_user = :yes
+
+    component = ActionLink::Show.new(url: 'http://example.com', current_user:, model:)
+    output = render_inline(component) { 'Hello, World!' }
+
+    expected_html = <<~HTML.strip
+      <a title="Show Orange model" class="c-action-link" target="_blank" href="http://example.com">Hello, World! <i class="o-acticon o-acticon--chevron-circle-right"></i></a>
+    HTML
+    assert_equal(expected_html, output.to_html)
+  end
+
+  def test_external_https_url
+    model = OrangeModel.new
+    current_user = :yes
+
+    component = ActionLink::Show.new(url: 'https://example.com', current_user:, model:)
+    output = render_inline(component) { 'Hello, World!' }
+
+    expected_html = <<~HTML.strip
+      <a title="Show Orange model" class="c-action-link" target="_blank" href="https://example.com">Hello, World! <i class="o-acticon o-acticon--chevron-circle-right"></i></a>
+    HTML
+    assert_equal(expected_html, output.to_html)
+  end
+
+  def test_amiguous_external_url
+    model = OrangeModel.new
+    current_user = :yes
+
+    component = ActionLink::Show.new(url: 'http?is=cool', current_user:, model:)
+    output = render_inline(component) { 'Hello, World!' }
+
+    expected_html = <<~HTML.strip
+      <a title="Show Orange model" class="c-action-link" href="http?is=cool">Hello, World! <i class="o-acticon o-acticon--chevron-circle-right"></i></a>
+    HTML
+    assert_equal(expected_html, output.to_html)
+  end
+
   def test_i18n_model
     model = OrangeModel.new
     current_user = :yes
