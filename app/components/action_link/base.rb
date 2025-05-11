@@ -24,6 +24,7 @@ module ActionLink
     option :url, default: -> {}
 
     def permission?
+      # TODO: use allowed? in ActionPolicy
       _policy.public_send(:"#{_action}?")
     end
 

@@ -8,6 +8,10 @@ module ActionLink
   class Engine < ::Rails::Engine
     isolate_namespace ActionLink
 
+    initializer "action_link.assets" do |app|
+      app.config.assets.paths << File.expand_path("../app/assets/stylesheets", __dir__)
+    end
+
     config.to_prepare do
       # Our ActionLink components are subclasses of `ViewComponent::Base`.
       # When `ViewComponent::Base` is subclassed, two things happen:

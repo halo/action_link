@@ -54,8 +54,9 @@ module Acticons
       status = message "Generating styles.scss in #{target_css_path}"
       rows = zip.read('style.scss').split("\n")
       start_row = rows.index { |row| row.include?('.o-acticon') }
-      content = "#{header}\n#{rows[start_row..].join("\n")}\n"
+      content = "#{header}\n@use \"variables\";\n\n#{rows[start_row..].join("\n")}\n"
       content = content.gsub('unicode(', '').gsub(')', '').gsub('; ', ';')
+      content = content.gsub('$o-acticon--', 'variables.$')
       target_css_path.join('style.scss').write content
       status.success
     end
@@ -63,6 +64,7 @@ module Acticons
     def generate_variables_css
       status = message "Generating variables.scss in #{target_css_path}"
       content = "#{header}#{zip.read('variables.scss').split("\n")[2..].join("\n")}\n"
+      content = content.gsub('o-acticon--', '')
       target_css_path.join('variables.scss').write content
       status.success
     end
