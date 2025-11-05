@@ -9,7 +9,7 @@ module ActionLink
     isolate_namespace ActionLink
 
     initializer "action_link.assets" do |app|
-      app.config.assets.paths << File.expand_path("../app/assets/stylesheets", __dir__)
+      app.config.assets.paths << Engine.root.join('app/stylesheets')
     end
 
     config.to_prepare do
