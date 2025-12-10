@@ -53,7 +53,7 @@ module ActionLink
     # May be accessed and/or overriden in subclasses
 
     def i18n_title_key
-      "action_link_component.titles.#{_action}"
+      "action_link.titles.#{_action}"
     end
 
     def http_method; end
@@ -70,7 +70,9 @@ module ActionLink
     # Options for `link_to`
 
     def _title
-      t(i18n_title_key, subject: strip_tags(_title_subject_name))
+      # Sometimes the <a title> attribute has non-breaking spaces in it ` `.
+      # ActionLink must not replace that with `&bnsp;` (even though other HTML needs to be stripped).
+      t(i18n_title_key, subject: strip_tags(_title_subject_name)).gsub(' ', ' ')
     end
 
     def _data
@@ -97,6 +99,8 @@ module ActionLink
 
     # Converts a class like `::ActionLink::New` to the symbol `:new`.
     def _action
+      return action if is_a?(::ActionLink::Custom)
+
       @_action ||= self.class.name[12..].underscore.to_sym
     end
 

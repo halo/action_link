@@ -35,6 +35,7 @@ ActionLink::Engine.config.to_prepare_blocks.each(&:call)
 
 require 'view_component/test_helpers'
 require 'view_component/test_case'
+require_relative 'application_test'
 require 'active_model'
 require 'action_policy'
 

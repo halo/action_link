@@ -14,7 +14,7 @@ class HouseModelPolicy < ActionPolicy::Base
   end
 end
 
-class TestDestroy < ViewComponent::TestCase
+class TestDestroy < ApplicationTest
   def test_disallowed
     model = HouseModel.new
     current_user = :no

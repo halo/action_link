@@ -1,5 +1,5 @@
 de:
-  action_link_component:
+  action_link:
     confirmations:
       destroy: "Möchtest du %{subject} löschen?"
       unassign: "Möchtest du %{subject} entkoppeln? Bei dieser Aktion wird nichts gelöscht."
@@ -10,3 +10,4 @@ de:
       new: "%{subject} anlegen"
       show: "%{subject} anzeigen"
       unassign: "%{subject} entkoppeln"
+      download: "%{subject} downloaden"

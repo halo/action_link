@@ -14,7 +14,7 @@ class ShelfModelPolicy < ActionPolicy::Base
   end
 end
 
-class TestEdit < ViewComponent::TestCase
+class TestEdit < ApplicationTest
   def test_disallowed
     model = ShelfModel.new
     current_user = :no

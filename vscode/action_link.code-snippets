@@ -1,0 +1,43 @@
+{
+  "= render ActionLink::New": {
+    "prefix": [
+      "nal"
+    ],
+    "body": [
+      "= render ActionLink::New.new(url: $1,",
+      "                             model: $2,",
+      "                             current_user:)",
+    ]
+  },
+  "= render ActionLink::Show": {
+    "prefix": [
+      "sal"
+    ],
+    "body": [
+      "= render ActionLink::Show.new(url: $1, current_user:)",
+    ]
+  },
+  "= render ActionLink::Edit": {
+    "prefix": [
+      "eal"
+    ],
+    "body": [
+      "= render ActionLink::Edit.new(url: $1,",
+      "                              model: $2,",
+      "                              title: $3,",
+      "                              current_user:)",
+    ]
+  },
+  "= render ActionLink::Destroy": {
+    "prefix": [
+      "dal"
+    ],
+    "body": [
+      "= render ActionLink::Destroy.new(url: $1,",
+      "                                 model: $2,",
+      "                                 confirmation_subject: 'dieses Ding',",
+      "                                 associative: true,",
+      "                                 current_user:)",
+    ]
+  },
+}

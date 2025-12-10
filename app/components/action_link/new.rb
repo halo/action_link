@@ -3,7 +3,7 @@
 module ActionLink
   # An action link that indicates adding a new record.
   class New < Base
-    ICON = 'plus-circle'
+    ICON = 'plus-circle'.freeze
 
     erb_template <<~ERB.gsub("\n", '')
       <% if permission? %>
@@ -23,7 +23,7 @@ module ActionLink
     option :associative, default: -> { false }
 
     def i18n_title_key
-      return 'action_link_component.titles.assign' if associative
+      return 'action_link.titles.assign' if associative
 
       super
     end

@@ -22,7 +22,7 @@ module ActionLink
     option :associative, default: -> { false }
 
     def i18n_title_key
-      return 'action_link_component.titles.unassign' if associative
+      return 'action_link.titles.unassign' if associative
 
       super
     end
@@ -42,9 +42,9 @@ module ActionLink
 
     def i18n_confirmation_key
       if associative
-        'action_link_component.confirmations.unassign'
+        'action_link.confirmations.unassign'
       else
-        'action_link_component.confirmations.destroy'
+        'action_link.confirmations.destroy'
       end
     end
   end

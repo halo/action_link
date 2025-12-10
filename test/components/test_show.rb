@@ -22,7 +22,7 @@ class OrangeModelPolicy < ActionPolicy::Base
   end
 end
 
-class TestShow < ViewComponent::TestCase
+class TestShow < ApplicationTest
   def test_disallowed
     model = OrangeModel.new
     current_user = :no

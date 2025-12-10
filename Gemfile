@@ -7,6 +7,7 @@ gemspec
 
 gem 'action_policy'
 gem 'activemodel'
+gem 'megatest'
 gem 'minitest'
 gem 'pry'
 gem 'railties'

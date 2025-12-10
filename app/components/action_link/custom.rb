@@ -1,21 +1,19 @@
 # frozen_string_literal: true
 
 module ActionLink
-  # An action link that indicates editing an existing record.
-  class Edit < Base
-    ICON = 'pencil-circle'.freeze
+  # An action link that indicates showing an existing record.
+  class Custom < Base
+    option :action
 
     erb_template <<~ERB.gsub("\n", '')
       <% if permission? %>
       <%= link_to(url, **options) do %>
       <%= content %>
-      <% if icon? %><%= ' ' %><%= icon_tag ::ActionLink::Edit::ICON %><% end %>
+      <% icon_tag :icon %>
       <% end %>
       <% else %>
       <%= content %>
       <% end %>
     ERB
-
-    option :url
   end
 end

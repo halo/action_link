@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.metadata['source_code_uri'] = 'https://github.com/halo/action_link'
   spec.metadata['changelog_uri'] = 'https://github.com/halo/halo/blob/main/CHANGELOG.md'
 
-  spec.files = Dir['CHANGELOG.md', 'LICENSE.txt', 'README.md',
+  spec.files = Dir['CHANGELOG.md', 'LICENSE.txt', 'README.md', 'vscode/action_link.code-snippets',
                    'app/**/*', 'lib/**/*', 'config/**/*'] & `git ls-files -z`.split("\0")
 
   spec.require_paths = ['lib']

@@ -1,5 +1,5 @@
 en:
-  action_link_component:
+  action_link:
     confirmations:
       destroy: "Would you like to delete %{subject}?"
       unassign: "Would you like to unassign %{subject}? This action does not delete."
@@ -10,3 +10,4 @@ en:
       new: Add %{subject}
       show: "Show %{subject}"
       unassign: "Unassign %{subject}"
+      download: "Download %{subject}"

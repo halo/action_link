@@ -3,7 +3,7 @@
 module ActionLink
   # An action link that indicates showing an existing record.
   class Show < Base
-    ICON = 'chevron-circle-right'
+    ICON = 'chevron-circle-right'.freeze
 
     erb_template <<~ERB.gsub("\n", '')
       <% if permission? %>
