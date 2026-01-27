@@ -51,6 +51,19 @@ class TestNew < ApplicationTest
     assert_equal(expected_html, output.to_html)
   end
 
+  def test_false_title
+    model = RocketModel.new
+    current_user = :yes
+
+    component = ActionLink::New.new(url: :home, model:, current_user:, title: false)
+    output = render_inline(component) { 'Hello, World!' }
+
+    expected_html = <<~HTML.strip
+      <a class="c-action-link" href="/home">Hello, World! <i class="o-acticon o-acticon--plus-circle"></i></a>
+    HTML
+    assert_equal(expected_html, output.to_html)
+  end
+
   def test_i18n_model
     model = RocketModel.new
     current_user = :yes

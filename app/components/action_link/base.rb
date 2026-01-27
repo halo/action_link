@@ -70,9 +70,11 @@ module ActionLink
     # Options for `link_to`
 
     def _title
+      return if manual_title == false
+
       # Sometimes the <a title> attribute has non-breaking spaces in it ` `.
-      # ActionLink must not replace that with `&bnsp;` (even though other HTML needs to be stripped).
-      t(i18n_title_key, subject: strip_tags(_title_subject_name)).gsub(' ', ' ')
+      # ActionLink must not replace that with `&bnsp;` (though other HTML needs to be stripped).
+      t(i18n_title_key, subject: strip_tags(_title_subject_name.gsub(' ', ' ')))
     end
 
     def _data
