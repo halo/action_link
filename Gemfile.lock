@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    action_link (1.0.2)
+    action_link (1.1.0)
       actionview
       calls
       dry-initializer
