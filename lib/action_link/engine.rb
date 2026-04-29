@@ -36,6 +36,8 @@ module ActionLink
       #
       # That's right here and now.
       ActiveSupport.on_load(:action_view) do
+        require 'view_component'
+
         require_relative '../../app/components/action_link/application_component'
         require_relative '../../app/components/action_link/base'
         require_relative '../../app/components/action_link/custom'
