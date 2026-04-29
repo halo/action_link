@@ -29,6 +29,12 @@ ViewComponent::Base.config.view_component_path = File.expand_path('../app/compon
 # Third, initialize the ActionLink gem
 
 require 'action_link/engine'
+
+# Our engine defers component loading with ActiveSupport.on_load(:action_view).
+# In tests, the load hook may already have fired with an empty base list,
+# so we ensure it has run before executing to_prepare blocks.
+ActiveSupport.run_load_hooks(:action_view, ActionView::Base) if defined?(ActionView::Base)
+
 ActionLink::Engine.config.to_prepare_blocks.each(&:call)
 
 # Now we can load whatever we need for our tests

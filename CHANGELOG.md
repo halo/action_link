@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [1.1.0] - 2026-04-28
+
+- Attempt to fix warnings in rails boot
+
 ## [1.0.2] - 2026-03-31
 
 - Remove too invasive CSS default styling for links
