@@ -20,7 +20,9 @@ module ActionLink
         target = vscode_dir.join('action_link.code-snippets')
         source = Engine.root.join('vscode/action_link.code-snippets')
 
-        FileUtils.ln_s(source, target, force: true)
+        unless target.symlink? && target.readlink.to_s == source.to_s
+          FileUtils.ln_s(source, target, force: true)
+        end
       end
     end
 
