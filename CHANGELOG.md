@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [1.1.3] - 2026-05-26
+
+- Fix auto-symlink for vscode snippets
+
 ## [1.1.0] - 2026-04-28
 
 - Attempt to fix warnings in rails boot
