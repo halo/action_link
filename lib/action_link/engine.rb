@@ -8,7 +8,7 @@ module ActionLink
   class Engine < ::Rails::Engine
     isolate_namespace ActionLink
 
-    initializer "action_link.assets" do |app|
+    initializer 'action_link.assets' do |app|
       app.config.assets.paths << Engine.root.join('app/stylesheets')
     end
 
@@ -20,9 +20,8 @@ module ActionLink
         target = vscode_dir.join('action_link.code-snippets')
         source = Engine.root.join('vscode/action_link.code-snippets')
 
-        unless target.symlink? && target.readlink.to_s == source.to_s
-          FileUtils.ln_s(source, target, force: true)
-        end
+        FileUtils.rm_f(target.to_s)
+        FileUtils.ln_s(source, target, force: true)
       end
     end
 
