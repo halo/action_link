@@ -6,6 +6,7 @@ require 'calls'
 require 'action_link/version'
 require 'action_link/model'
 require 'action_link/title_subject_name'
+require 'action_link/vscode_snippets'
 
 require 'action_link/engine' if defined?(Rails::Engine)
 

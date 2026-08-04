@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Make VS Code snippet symlinking atomic so concurrent app boots no longer race into `Errno::EEXIST`
+
 ## [1.1.3] - 2026-05-26
 
 - Fix auto-symlink for vscode snippets

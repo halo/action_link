@@ -20,8 +20,7 @@ module ActionLink
         target = vscode_dir.join('action_link.code-snippets')
         source = Engine.root.join('vscode/action_link.code-snippets')
 
-        FileUtils.rm_f(target.to_s)
-        FileUtils.ln_s(source, target, force: true)
+        VscodeSnippets.install(target, source)
       end
     end
 
