@@ -1,3 +1,7 @@
+## [1.1.6] - 2026-09-25
+
+- Add a Create link type for links that create a record right away
+
 ## [1.1.5] - 2026-08-04
 
 - Make VS Code snippet symlinking atomic so concurrent app boots no longer race into `Errno::EEXIST`
