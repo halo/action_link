@@ -5,6 +5,7 @@ de:
       unassign: "Möchtest du %{subject} entkoppeln? Bei dieser Aktion wird nichts gelöscht."
     titles:
       assign: "%{subject} zuweisen"
+      create: "%{subject} anlegen"
       destroy: "%{subject} löschen"
       edit: "%{subject} bearbeiten"
       new: "%{subject} anlegen"

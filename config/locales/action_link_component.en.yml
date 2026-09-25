@@ -5,6 +5,7 @@ en:
       unassign: "Would you like to unassign %{subject}? This action does not delete."
     titles:
       assign: "Assign %{subject}"
+      create: "Create %{subject}"
       destroy: "Delete %{subject}"
       edit: "Edit %{subject}"
       new: Add %{subject}

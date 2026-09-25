@@ -39,6 +39,7 @@ module ActionLink
         require_relative '../../app/components/action_link/application_component'
         require_relative '../../app/components/action_link/base'
         require_relative '../../app/components/action_link/custom'
+        require_relative '../../app/components/action_link/create'
         require_relative '../../app/components/action_link/destroy'
         require_relative '../../app/components/action_link/edit'
         require_relative '../../app/components/action_link/new'
