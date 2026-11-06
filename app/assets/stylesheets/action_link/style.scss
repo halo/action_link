@@ -2,6 +2,11 @@
 
 @use "variables";
 
+.o-acticon--plus-plus-circle {
+  &:before {
+    content: variables.$plus-plus-circle;
+  }
+}
 .o-acticon--info-circle {
   &:before {
     content: variables.$info-circle;
