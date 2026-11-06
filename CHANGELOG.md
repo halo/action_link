@@ -1,3 +1,7 @@
+## [1.1.7] - 2026-11-06
+
+- Add `multiple` option to `ActionLink::New` with plus-plus icon
+
 ## [1.1.6] - 2026-09-25
 
 - Add a Create link type for links that create a record right away

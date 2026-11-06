@@ -9,6 +9,7 @@ en:
       destroy: "Delete %{subject}"
       edit: "Edit %{subject}"
       new: Add %{subject}
+      new_multiple: Add %{subject} and more
       show: "Show %{subject}"
       unassign: "Unassign %{subject}"
       download: "Download %{subject}"

@@ -9,6 +9,7 @@ de:
       destroy: "%{subject} löschen"
       edit: "%{subject} bearbeiten"
       new: "%{subject} anlegen"
+      new_multiple: "%{subject} und weitere anlegen"
       show: "%{subject} anzeigen"
       unassign: "%{subject} entkoppeln"
       download: "%{subject} downloaden"
